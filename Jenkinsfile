@@ -20,7 +20,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo 'Menginstal modul Node.js (termasuk Jest)...'
-                sh 'npm ci' 
+                sh 'npm install' 
             }
         }
 
