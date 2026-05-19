@@ -1,6 +1,6 @@
 pipeline {
     agent any
-  
+
     tools {
         nodejs 'node'
     }
@@ -20,14 +20,18 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo 'Menginstal modul Node.js (termasuk Jest)...'
-                sh 'npm install' 
+                dir('devops_uts') {
+                    sh 'npm install'
+                }
             }
         }
 
         stage('Execute Unit Tests') {
             steps {
                 echo 'Menjalankan Unit Test (sum.test.js)...'
-                sh 'npm test'
+                dir('devops_uts') {
+                    sh 'npm test'
+                }
             }
         }
     }
@@ -35,7 +39,7 @@ pipeline {
     post {
         success {
             echo '=================================================='
-            echo '   SUKSES! Pipeline Berhasil & Unit Test Lolos    '
+            echo ' SAKSES! Pipeline Berhasil & Unit Test Lolos (HD) '
             echo '=================================================='
         }
         failure {
